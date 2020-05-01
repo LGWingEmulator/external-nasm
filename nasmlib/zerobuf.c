@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------- *
- *   
+ *
  *   Copyright 1996-2016 The NASM Authors - All Rights Reserved
  *   See the file AUTHORS included with the NASM distribution for
  *   the specific copyright holders.
@@ -14,7 +14,7 @@
  *     copyright notice, this list of conditions and the following
  *     disclaimer in the documentation and/or other materials provided
  *     with the distribution.
- *     
+ *
  *     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
  *     CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
  *     INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
@@ -38,5 +38,7 @@
 #include "compiler.h"
 #include "nasmlib.h"
 
-/* Uninitialized -> all zero by C spec */
-const uint8_t zero_buffer[ZERO_BUF_SIZE];
+/* Explicitly initialize buffer, as some linkers will drop common symbols
+  (See https://stackoverflow.com/questions/28464770)
+*/
+const uint8_t zero_buffer[ZERO_BUF_SIZE] = {0};
